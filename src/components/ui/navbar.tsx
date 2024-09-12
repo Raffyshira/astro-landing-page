@@ -151,7 +151,7 @@ export const SheetMobileNav = ({
                     </ScrollArea>
                     <SheetFooter className="border-b">
                         <div className="w-full flex flex-col gap-2 mb-2">
-                            <Button className="w-full font-semibold" asChild>
+                            <Button aria-label="sidebar button" className="w-full font-semibold" asChild>
                                 <a href="/">Login</a>
                             </Button>
                             <Button
