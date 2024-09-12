@@ -7,7 +7,7 @@ import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
-    site: "http://localhost:4321/",
+    site: "https://demo-landingpage.vercel.app/",
     integrations: [tailwind({ applyBaseStyles: false }), react(), mdx()],
     output: "static",
     image: {
