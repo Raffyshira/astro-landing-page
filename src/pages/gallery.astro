@@ -1,0 +1,37 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Container from "@/components/Container.astro";
+
+import BlurGallery from "../components/magic-ui/fade-gallery.tsx";
+
+import { Image } from "astro:assets";
+
+const images = Array.from({ length: 14 }, (_, i) => {
+  const isLandscape = i % 2 === 0;
+  const width = isLandscape ? 800 : 600;
+  const height = isLandscape ? 600 : 800;
+  return `https://picsum.photos/seed/${i + 1}/${width}/${height}`;
+});
+---
+
+<BaseLayout title="Gallery">
+  <Container>
+    <article class="max-w-2xl mx-auto text-center align-middle space-y-3.5 mb-5">
+      <p>Gallery</p>
+      <h1 class="text-4xl font-semibold sm:text-5xl">Our Gallery</h1>
+      <p class="text-neutral-500 dark:text-light-gray">Your Trusted Partner in Data Protection with Cutting-Edge Solutions for Comprehensive Data Security.</p>
+    </article>
+    <div class="columns-2 gap-4 sm:columns-3">
+        {images.map((imageUrl, idx) => (
+          <BlurGallery delay={0.25 + idx * 0.05} inView client:load>
+            <Image
+              class="mb-4 size-full rounded-lg object-contain"
+              src={imageUrl}
+              alt={`Random stock image ${idx + 1}`}
+              width={600} height={800}
+            />
+          </BlurGallery>
+        ))}
+      </div>
+  </Container>
+</BaseLayout>

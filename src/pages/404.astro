@@ -1,0 +1,22 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Container from "@/components/Container.astro";
+import {StarsBackground} from "@/components/aceternity-ui/stars-background.tsx";
+import {ShootingStars} from "@/components/aceternity-ui/shooting-stars.tsx";
+
+import { Button } from "@/components/ui/button";
+---
+
+<BaseLayout title="404 Not Found" description="Sorry, The page that you looking for is not available or still development ">
+  <Container class="h-screen">
+    <div class="relative h-full z-40 flex flex-col justify-center items-center text-center align-middle gap-3.5 z-40">
+      <h1 class="text-4xl font-bold sm:text-7xl">404 Not Found</h1>
+      <p class="text-base sm:text-lg">Sorry, The page that you looking for is not available or still development :)</p>
+      <Button>
+        <a href="/">Back to Home</a>
+      </Button>
+    </div>
+    <StarsBackground className="z-0 h-screen" client:load />
+    <ShootingStars className="z-0 h-screen" client:load />
+  </Container>
+</BaseLayout>

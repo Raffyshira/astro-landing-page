@@ -1,0 +1,52 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Container from "@/components/Container.astro";
+import Card from "@/components/Card.astro";
+
+import { Button } from "@/components/ui/button.tsx";
+
+import { getCollection } from "astro:content";
+
+import { ArrowRight } from "lucide-react";
+
+const entry = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<BaseLayout title="Blog Post">
+  <Container>
+    <article class="max-w-2xl mx-auto text-center align-middle space-y-3.5">
+      <p>Blog</p>
+      <h1 class="text-4xl font-semibold sm:text-5xl">Our Latest Blog Posts on Web Develop</h1>
+      <p class="text-neutral-500 dark:text-light-gray">Your Trusted Partner in Data Protection with Cutting-Edge Solutions for Comprehensive Data Security.</p>
+    </article>
+  </Container>
+  <Container class="overflow-visible max-w-2xl">
+    <div class="max-w-3xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-3.5 w-full h-full">
+      {entry.map((post) => (
+      <div class="w-full h-fit">
+        <a class="z-10" href={`/blog/${post.slug}`}>
+        <Image class="rounded-xl aspect-video object-cover w-full h-full mb-3.5" src={post.data.cover} alt={post.data.title} width={600} height={400} loading="lazy" />
+      </a>
+        <article class="z-50 flex flex-col gap-2 text-foreground mb-5">
+          <span class="text-xs sm:text-sm lg:text-base">{post.data.tags[0]} | {post.data.pubDate.toISOString().split('T')[0]}</span>
+          <h1 class="text-xl font-semibold">{post.data.title}</h1>
+          <p class="text-sm text-neutral-500 dark:text-light-gray line-clamp-2">{post.data.description}</p>
+          <a class="inline-flex items-center font-light" href={`/blog/${post.slug}`}>Read More <ArrowRight className="size-4 ml-2" /></a>
+        </article>
+      </div>  
+      ))}
+    </div>
+  </Container>
+  <Container class="max-w-2xl">
+    <Card class="bg-neutral-800 rounded-[32px] py-5 max-w-2xl mx-auto">
+      <article class="text-white w-72 text-center mx-auto sm:w-full">
+        <h1 class="text-4xl font-semibold mb-5">Secure Your Data with Astroverse Protection Solution</h1>
+        <p class="text-sm font-light">Allows you to set thresholds for security parameters and receive real-time alerts when these thresholds are breached.</p> 
+        <Button size="lg" className="mt-5 bg-white text-black rounded-full h-12 w-fit">Get Started<ArrowRight className="ml-5 bg-lime-300 h-7 w-7 rounded-full p-1" /></Button>
+      </article>
+    </Card>
+  </Container>
+</BaseLayout>

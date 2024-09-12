@@ -1,0 +1,9 @@
+---
+import { Image } from "astro:assets";
+
+const {src, alt, class: className} = Astro.props;
+---
+
+<figure class:list={["relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full", className]}>
+  <Image class="aspect-square h-full w-full" src={src} alt={alt} width={100} height={100} loading="eager" />
+</figure>

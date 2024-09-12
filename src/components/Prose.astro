@@ -1,0 +1,9 @@
+---
+const {
+  class: className
+} = Astro.props
+---
+
+<article class:list={["prose prose-slate md:prose-lg prose-p:text-foreground prose-a:text-blue-600 dark:prose-invert marker:text-foreground prose-li:text-foreground prose-ul:list-outside prose-ol:list-outside", className]}>
+  <slot />
+</article>

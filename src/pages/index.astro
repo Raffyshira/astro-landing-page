@@ -1,0 +1,398 @@
+---
+import { cn } from "@/lib/utils";
+import { Image } from "astro:assets";
+
+// KOMPONENT ASTRO
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Container from "@/components/Container.astro";
+import Card from "@/components/Card.astro";
+
+// KOMPONENT TYPESRIPT
+import {ShootingStars} from "@/components/aceternity-ui/shooting-stars.tsx";
+import {StarsBackground} from "@/components/aceternity-ui/stars-background.tsx";
+import AnimatedGradientText from "@/components/magic-ui/animated-gradient-text.tsx";
+import { NeonGradientCard } from "@/components/magic-ui/neon-gradient-card";
+import Testimony from "@/components/magic-ui/testimonials.tsx";
+import { Button } from "@/components/ui/button";
+import { AnimateReveal, HeroAnimate } from "@/components/animate/animate-reveal.tsx";
+
+// ICON APP
+import { MoveRight, ChevronDown, ChevronRight, AlarmClockCheck, ChartNoAxesCombined, CodeXml, Check, ArrowRight } from "lucide-react";
+
+import maildark from "@/assets/images/mail-dark.png";
+import maillight from "@/assets/images/mail-light.png";
+
+// TYPE TYPESRIPT
+import type {ReviewProps, FeatureProps, PropsListFeature, PropsListReview} from "@/types.d.ts";
+
+
+// IF ANY UPDATE WITH THE FEATURE JUST WRITE BELOW HERR
+const listFeature: PropsListFeature[] = [
+  {
+    id: 1,
+    title: "Astro + Tailwind CSS Integration",
+    desc: "A seamless integration between two great frameworks that offer high productivity, performance and versatility."
+  },
+  {
+    id: 2,
+    title: "Ready-to-use Components",
+    desc: "Widgets made with Tailwind CSS ready to be used in Marketing Websites, SaaS, Blogs, Personal Profiles, Small Business..."
+  },
+  {
+    id: 3,
+    title: "Best Practices",
+    desc: "Creating secure, efficient, and user-friendly websites that deliver exceptional experiences and lasting value."
+  },
+  {
+    id: 4,
+    title: "Excellent Page Speed",
+    desc: "Having a good page speed impacts organic search ranking, improves user experience (UI/UX) and increase conversion rates."
+  },
+  {
+    id: 5,
+    title: "Search Engine Optimization (SEO)",
+    desc: "SEO lies in its ability to enhance a website's visibility, driving organic traffic and enabling it to reach a wider audience."
+  },
+  {
+    id: 6,
+    title: "Open to new ideas and contributions",
+    desc: "Embracing a culture that is open to new ideas and contributions is integral fostering innovation, collaboration, and a dynamic user experience."
+  },
+];
+
+// IF YOU WANT CHANGES REVIEW FROM PERSON
+// JUST WRITE BELOW HERE
+const reviews: PropsListReview[] = [
+  {
+    name: "Desy",
+    username: "@desy",
+    body: "I've never seen anything like this before. It's amazing. I love it.",
+    img: "https://avatar.vercel.sh/jack",
+  },
+  {
+    name: "Maretha",
+    username: "@maretha",
+    body: "I don't know what to say. I'm speechless. This is amazing.",
+    img: "https://avatar.vercel.sh/jill",
+  },
+  {
+    name: "Imam",
+    username: "@imam",
+    body: "I'm at a loss for words. This is amazing. I love it.",
+    img: "https://avatar.vercel.sh/john",
+  },
+  {
+    name: "Aldi",
+    username: "@aldi",
+    body: "I'm at a loss for words. This is amazing. I love it.",
+    img: "https://avatar.vercel.sh/jane",
+  },
+  {
+    name: "Vina",
+    username: "@vina",
+    body: "I'm at a loss for words. This is amazing. I love it.",
+    img: "https://avatar.vercel.sh/jenny",
+  },
+  {
+    name: "Andy",
+    username: "@andy",
+    body: "I'm at a loss for words. This is amazing. I love it.",
+    img: "https://avatar.vercel.sh/james",
+  },
+];
+
+// FOR REVIEW UP AND DOWN
+const firstRow = reviews.slice(0, reviews.length / 2);
+const secondRow = reviews.slice(reviews.length / 2);
+ 
+---
+
+<BaseLayout title="Demo - Landing Page">
+  <!-- HERO SECTION START -->
+    <div class="h-[25rem] rounded-md flex flex-col items-center justify-start relative w-full mt-16">
+      <article class="max-w-5xl mx-auto w-full px-8  text-center align-middle z-10">
+        <HeroAnimate client:load>
+        <AnimatedGradientText className="mb-5">
+        🚀 <hr class="mx-2 h-4 w-[1px] shrink-0 bg-gray-300" />{" "}
+        <span
+          class={cn(
+            `inline animate-gradient bg-gradient-to-r from-[#ffaa40] via-[#9c40ff] to-[#ffaa40] bg-[length:var(--bg-size)_100%] bg-clip-text text-transparent`,
+          )}
+        >
+          Introducing Astroverse
+        </span>
+        <ChevronRight className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5 sm:size-5" />
+        </AnimatedGradientText>
+        <h2 class="bg-gradient-to-br dark:from-white from-black from-30% dark:to-white/40 to-black/40 bg-clip-text py-4 text-5xl font-medium leading-none tracking-tighter text-transparent text-balance sm:text-6xl md:text-7xl lg:text-8xl translate-y-[-1rem]">
+        Astroverse is the best way to build the website.
+      </h2>
+      </HeroAnimate>
+      <HeroAnimate delayNum={0.50} client:load>
+        <p class="text-neutral-950 dark:text-light-gray sm:w-[34rem] mx-auto sm:text-xl">excepteur pariatur excepteur in velit in esse commodo ea minim commodo amet ipsum officia minim</p>
+        <div class="mt-5 w-full flex flex-col sm:flex-row gap-2 justify-center items-center">
+          <Button className="font-semibold w-full sm:w-fit">
+          <a class="inline-flex items-center" href="/">Get Astroverse Now <MoveRight className="size-4 ml-1" /></a>
+          </Button>
+          <Button className="font-semibold w-full sm:w-fit" variant="outline">
+          <a class="inline-flex items-center" href="/">Start Exploring <ChevronDown className="size-4 ml-1" /></a>
+          </Button>
+      </HeroAnimate>
+      </div>
+      </article>
+      <ShootingStars client:load />
+      <StarsBackground client:load />
+    </div>
+  <div class="mt-10 max-w-6xl w-full h-full mx-auto px-6 py-6 sm:px-10 lg:px-12">
+      <NeonGradientCard className="max-w-6xl items-center justify-center text-center mx-auto w-full h-full" client:load>
+        <Image class="w-full aspect-video object-cover rounded-lg hidden dark:block" loading="eager" src={maildark} alt="mail dark" width={1200} height={500} format="webp" />
+        <Image class="w-full aspect-video object-cover rounded-lg block dark:hidden" loading="eager" src={maillight} alt="mail light" width={1200} height={500} format="webp" />
+      </NeonGradientCard>
+  </div>
+  <!-- HERO SECTION END -->
+  
+  <!-- SECTION COMPANY START -->
+  <Container class="mt-10">
+    <h3 class="text-center font-medium sm:text-xl lg:text-3xl">Trusted by thousands of companies worldwide</h3>
+      <div class="max-w-3xl mx-auto grid grid-cols-2 place-content-center place-items-center mt-3.5 gap-3 sm:grid-cols-5">
+        <Image class="w-28" src="/images/Google.svg" alt="Google" width={200} height={150} />
+        <Image class="w-28 dark:brightness-0 dark:invert" src="/images/Notion.svg" alt="Notion" width={200} height={150} />
+        <Image class="w-28 dark:brightness-0 dark:invert" src="/images/GitHub.svg" alt="GitHub" width={200} height={150} />
+        <Image class="w-28 dark:brightness-0 dark:invert" src="/images/Uber.svg" alt="Uber" width={200} height={150} />
+        <Image class="col-span-2 sm:col-span-1 w-28" src="/images/Microsoft.svg" alt="Microsoft" width={200} height={150} />
+      </div>
+  </Container>
+  <!-- SECTION COMPANY END -->
+  
+  <!-- SECTION MAIN BENEFIT START -->
+  <Container class="mt-10">
+    <AnimateReveal direction="x" client:load initialPos={200}>
+      <article class="text-start sm:text-center align-middle">
+        <h3 class="uppercase text-sm text-orange-500 mb-3 sm:text-lg">Embrace the future of website</h3>
+        <h1 class="text-3xl my-3.5 sm:text-4xl">Seamlessly embrace the convenience and security</h1>
+        <p class="text-neutral-950 dark:text-light-gray sm:text-xl">Our advanced digital wallet solution, enabling you to make secure and streamlined transactions across various merchants, both online and offline.</p>
+    </article>
+    </AnimateReveal>
+    <AnimateReveal client:load direction="y">
+      <div class="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-2 place-items-center place-content-center">
+        <Card class="justify-center items-center">
+          <span class="bg-orange-500 p-2 rounded-full text-white dark:text-black w-fit"><AlarmClockCheck className="size-5" /></span>
+          <h2 class="text-2xl my-3.5 font-semibold">Advanced Detection</h2>
+          <p class="text-neutral-950 dark:text-light-gray sm:text-xl">esse ea quis ex veniam est sit aute aliquip sunt proident commodo officia eiusmod labore</p>
+        </Card>
+        <Card class="justify-center items-center">
+          <span class="bg-orange-500 p-2 rounded-full text-white dark:text-black w-fit"><ChartNoAxesCombined className="size-5" /></span>
+          <h2 class="text-2xl my-3.5 font-semibold">Robust Data Encryption</h2>
+          <p class="text-neutral-950 dark:text-light-gray sm:text-xl">esse ea quis ex veniam est sit aute aliquip sunt proident commodo officia eiusmod labore</p>
+        </Card>
+        <Card class="sm:col-span-2 w-96 justify-center items-center">
+          <span class="bg-orange-500 p-2 rounded-full text-white dark:text-black w-fit"><CodeXml className="size-5" /></span>
+          <h2 class="text-2xl my-3.5 font-semibold">Automated Response</h2>
+          <p class="text-neutral-950 dark:text-light-gray sm:text-xl">esse ea quis ex veniam est sit aute aliquip sunt proident commodo officia eiusmod labore</p>
+        </Card>
+      </div>
+    </AnimateReveal>
+  </Container>
+  <!-- SECTION MAIN BENEFIT END -->
+  
+  <!-- SECTION MAIN FEATURE START -->
+  <Container class="mt-10">
+    <AnimateReveal client:load direction="x" initialPos={-200}>
+      <article class="text-start sm:text-center align-middle">
+        <h3 class="uppercase text-sm text-orange-500 mb-3 sm:text-lg">Key Feature</h3>
+        <h1 class="text-3xl mb-3.5 sm:text-4xl">Everything you need to <span class="text-orange-500">start a website</span></h1>
+        <p class="text-neutral-950 dark:text-light-gray sm:text-xl">Astro comes batteries included. It takes the best parts of state-of-the-art tools and adds its own innovations.</p>
+      </article>
+    </AnimateReveal>
+    <AnimateReveal client:load direction="y">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-5 mt-3.5">
+        <Card class="px-3 py-4 text-start">
+          <Image class="w-full h-full rounded-md mb-5 gradient-mask-b-0" src="/images/key1.avif" alt="key feature" width={150} height={100} />
+          <article>
+            <p class="bg-orange-500 px-2 text-xs rounded-full text-white dark:text-black py-1 font-medium sm:text-sm lg:text-base w-fit">Astroverse</p>
+            <h3 class="text-xl font-medium my-3.5">Responsive Template</h3>
+            <p class="text-neutral-950 dark:text-light-gray text-base">Astroship is a creative and modern mobile responsive website template that helps you create any kind of marketing websites or landing pages.</p>
+          </article>
+        </Card>
+        <Card class="px-3 py-4 text-start">
+          <Image class="w-full h-full object-cover rounded-md mb-5 gradient-mask-b-0" src="/images/key2.avif" alt="key feature" width={150} height={100} />
+          <article>
+            <p class="bg-orange-500 px-2 text-xs rounded-full text-white dark:text-black py-1 font-medium sm:text-sm lg:text-base w-fit">Creative</p>
+            <h3 class="text-xl font-medium my-3.5">Next Level Template</h3>
+            <p class="text-neutral-950 dark:text-light-gray text-base">Astroship is a new kind of website template that integrates your favorite tools and workflows.</p>
+          </article>
+        </Card>
+        <Card class="px-3 py-4 text-start">
+          <Image class="w-full h-full rounded-md mb-5 gradient-mask-b-0" src="/images/key3.avif" alt="key feature" width={150} height={100} />
+          <article>
+            <p class="bg-orange-500 px-2 text-xs rounded-full text-white dark:text-black py-1 font-medium sm:text-sm lg:text-base w-fit">Template</p>
+            <h3 class="text-xl font-medium my-3.5">Modern Design</h3>
+            <p class="text-neutral-950 dark:text-light-gray text-base">Feeling old? Try this template and be a part of the modern design.</p>
+          </article>
+        </Card>
+        <Card class="px-3 py-4 text-start">
+          <Image class="w-full h-full rounded-md mb-5 gradient-mask-b-0" src="/images/key2.avif" alt="key feature" width={150} height={100} />
+          <article>
+            <p class="bg-orange-500 px-2 text-xs rounded-full text-white dark:text-black py-1 font-medium sm:text-sm lg:text-base w-fit">Product</p>
+            <h3 class="text-xl font-medium my-3.5">Highlight Features</h3>
+            <p class="text-neutral-950 dark:text-light-gray text-base">You can highlight your features in a trendy grid like this one.</p>
+          </article>
+        </Card>
+        <Card class="px-3 py-4 text-start">
+          <Image class="w-full h-full rounded-md mb-5 gradient-mask-b-0" src="/images/key5.svg" alt="key feature" width={150} height={100} />
+          <article>
+            <p class="bg-orange-500 px-2 text-xs rounded-full text-white dark:text-black py-1 font-medium sm:text-sm lg:text-base w-fit">Webhooks</p>
+            <h3 class="text-xl font-medium my-3.5">100+ Integrations</h3>
+            <p class="text-neutral-950 dark:text-light-gray text-base">Astroship can be integrated with hundreds of tools using Zapier.</p>
+          </article>
+        </Card>
+      </div>  
+    </AnimateReveal>
+  </Container>
+  <!-- SECTION MAIN FEATURE END -->
+  
+  <!-- SECTION OTHER FEATURE START -->
+  <Container class="mt-10">
+    <AnimateReveal client:load direction="x" initialPos={200}>
+      <article class="text-start sm:text-center align-middle">
+        <h3 class="uppercase text-sm text-orange-500 mb-3 sm:text-lg">Feature</h3>
+        <h1 class="text-3xl my-3.5 sm:text-4xl">What you get with Astroverse</h1>
+        <p class="text-neutral-950 dark:text-light-gray sm:text-xl">One of the most professional and comprehensive templates currently on the market. Most starred & forked Astro theme in 2022.</p>
+      </article>
+    </AnimateReveal>
+    <AnimateReveal client:load direction="y">
+      <div class="w-full h-full mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {listFeature.map((item: FeatureProps) => (
+          <div class="flex flex-row justify-between items-start space-x-5 mt-3.5">
+            <div class="bg-orange-500 p-2 rounded-full text-white dark:text-black h-fit"><AlarmClockCheck className="size-5" /></div>
+            <div>
+            <h3 class="text-xl font-semibold mb-3.5">{item.title}</h3>
+            <p class="text-neutral-950 dark:text-light-gray text-sm sm:text-base">{item.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </AnimateReveal>
+  </Container>
+  <!-- SECTION OTHER FEATURE START -->
+  
+  <!-- SECTION PRICING START -->
+  <Container class="mt-10">
+    <AnimateReveal client:load direction="x" initialPos={-200}>
+      <article class="text-start sm:text-center align-middle">
+        <h3 class="uppercase text-sm text-orange-500 mb-3 sm:text-lg">Pricing</h3>
+        <h1 class="text-3xl my-3.5 sm:text-4xl">Simple pricing for everyone.</h1>
+        <p class="text-neutral-950 dark:text-light-gray sm:text-xl">Choose an affordable plan that's packed with the best features for engaging your audience, creating customer loyalty, and driving sales.</p>
+      </article>
+    </AnimateReveal>
+    <AnimateReveal client:load direction="y">
+      <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+        <Card class="text-start px-10 py-8">
+          <div class="mb-6">
+            <h3 class="text-xl font-semibold">Basic</h3>
+            <p class="text-sm text-neutral-950 dark:text-light-gray">A basic plan for startups and individual users</p>
+          </div>
+          <div class="w-full h-full">
+            <h2 class="text-2xl mb-6 font-bold">$10<span class="text-base font-normal ml-1 text-neutral-950 dark:text-light-gray text-sm">per user/month billed annualy or <span class="text-foreground">$24 billed annualy</span></span></h2>
+            <Button className="font-semibold w-full">Get started</Button>
+            <div class="mt-10 flex flex-col gap-2 text-neutral-950 dark:text-light-gray h-full">
+              <h3 class="inline-flex items-center"><Check className="size-4 mr-1 text-foreground" /> For hobby sites</h3>
+              <h3 class="inline-flex items-center"><Check className="size-4 mr-1 text-foreground" /> Personal Domain</h3>
+              <h3 class="inline-flex items-center"><Check className="size-4 mr-1 text-foreground" /> Responsive</h3>
+            </div>
+          </div>
+        </Card>
+        <Card class="text-start px-10 py-8 border border-orange-500">
+          <div class="mb-6">
+            <h3 class="text-xl font-semibold">Premium</h3>
+            <p class="text-sm text-neutral-950 dark:text-light-gray">A Premium plan for startups and individual users</p>
+          </div>
+          <div class="w-full h-full">
+            <h2 class="text-2xl mb-6 font-bold">$50<span class="text-base font-normal ml-1 text-neutral-950 dark:text-light-gray text-sm">per user/month billed annualy or <span class="text-foreground">$48 billed annualy</span></span></h2>
+            <Button className="font-semibold w-full">Get started</Button>
+            <div class="mt-10 flex flex-col gap-2 text-neutral-950 dark:text-light-gray h-full">
+              <h3 class="inline-flex items-center"><Check className="size-4 mr-1 text-foreground" /> For startup sites</h3>
+              <h3 class="inline-flex items-center"><Check className="size-4 mr-1 text-foreground" /> Personal Domain</h3>
+              <h3 class="inline-flex items-center"><Check className="size-4 mr-1 text-foreground" /> Responsive</h3>
+            </div>
+          </div>
+        </Card>
+        <Card class="text-start px-10 py-8">
+          <div class="mb-6">
+            <h3 class="text-xl font-semibold">Business</h3>
+            <p class="text-sm text-neutral-950 dark:text-light-gray">A Business plan for startups and individual users</p>
+          </div>
+          <div class="w-full h-full">
+            <h2 class="text-2xl mb-6 font-bold">$99<span class="text-base font-normal ml-1 text-neutral-950 dark:text-light-gray text-sm">per user/month billed annualy or <span class="text-foreground">$54 billed annualy</span></span></h2>
+            <Button className="font-semibold w-full">Get started</Button>
+            <div class="mt-10 flex flex-col gap-2 text-neutral-950 dark:text-light-gray h-full">
+              <h3 class="inline-flex items-center"><Check className="size-4 mr-1 text-foreground" /> For startup sites</h3>
+              <h3 class="inline-flex items-center"><Check className="size-4 mr-1 text-foreground" /> Personal Domain</h3>
+              <h3 class="inline-flex items-center"><Check className="size-4 mr-1 text-foreground" /> Responsive</h3>
+            </div>
+          </div>
+        </Card>
+      </div>
+    </AnimateReveal>
+  </Container>
+  <!-- SECTION PRICING END -->
+  
+  <!-- SECTION REVIEW START -->
+  <Container class="mt-10">
+    <AnimateReveal client:load direction="x" initialPos={-200}>
+      <article class="text-center align-middle">
+        <h1 class="text-3xl my-3.5 sm:text-4xl">What people saying about us.</h1>
+        <p class="text-neutral-950 dark:text-light-gray sm:text-xl">Don't just take our word for it. Here's what real people are saying about Astroverse.</p>
+      </article>
+    </AnimateReveal>
+    <AnimateReveal client:load direction="y">
+      <div class="relative flex h-[300px] w-full flex-col items-center justify-center overflow-hidden rounded-lg bg-background">
+        <Testimony pauseOnHover client:load>
+          {firstRow.map((review: ReviewProps) => (
+            <Card class="relative w-80 cursor-pointer overflow-hidden text-start border">
+              <div class="flex flex-row items-center gap-2">
+                <Image class="rounded-full" width="32" height="32" alt="" src={review.img} />
+                <div class="flex flex-col">
+                  <p class="text-sm font-medium dark:text-white">
+                    {review.name}
+                  </p>
+                  <p class="text-xs font-medium dark:text-white/40">{review.username}</p>
+                </div>
+              </div>
+              <blockquote class="mt-2 text-sm">{review.body}</blockquote>
+            </Card>
+          ))}
+        </Testimony>
+        <Testimony reverse pauseOnHover client:load>
+          {secondRow.map((review: ReviewProps) => (
+            <Card class="relative w-80 cursor-pointer overflow-hidden text-start border">
+              <div class="flex flex-row items-center gap-2">
+                <Image class="rounded-full" width="32" height="32" alt="" src={review.img} />
+                <div class="flex flex-col">
+                  <p class="text-sm font-medium dark:text-white">
+                    {review.name}
+                  </p>
+                  <p class="text-xs font-medium dark:text-white/40">{review.username}</p>
+                </div>
+              </div>
+              <blockquote class="mt-2 text-sm">{review.body}</blockquote>
+            </Card>
+          ))}
+        </Testimony>
+        <div class="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-white dark:from-background"></div>
+        <div class="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-white dark:from-background"></div>
+      </div>
+    </AnimateReveal>
+  </Container>
+  <!-- SECTION REVIEW END -->
+  <Container class="max-w-2xl">
+    <AnimateReveal client:load direction="y">
+      <Card class="bg-neutral-800 rounded-[32px] py-5 max-w-2xl mx-auto">
+        <article class="text-white w-72 text-center mx-auto sm:w-full">
+          <h1 class="text-4xl font-semibold mb-5">Secure Your Data with Astroverse Protection Solution</h1>
+          <p class="text-sm font-light">Allows you to set thresholds for security parameters and receive real-time alerts when these thresholds are breached.</p> 
+          <Button size="lg" className="mt-5 bg-white text-black rounded-full h-12 w-fit">Get Started<ArrowRight className="ml-5 bg-lime-300 h-7 w-7 rounded-full p-1" /></Button>
+        </article>
+    </Card>
+    </AnimateReveal>
+  </Container>
+</BaseLayout>

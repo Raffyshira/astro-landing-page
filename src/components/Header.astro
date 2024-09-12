@@ -1,0 +1,61 @@
+---
+import { Image } from "astro:assets";
+import ThemeToggle from "../components/ThemeToggle.astro";
+import { SheetMobileNav, NavDesktop } from "@/components/ui/navbar";
+import { Button } from "@/components/ui/button.tsx"
+
+import { navMenuConfig } from "@/lib/nav-menu.ts";
+---
+
+<header id="header" class="max-w-full w-full h-14 flex justify-between items-center px-3 py-9 sm:px-6 sm:h-14 sm:shadow sticky top-0 z-50 change-background transition-all duration-700 ease-linear">
+  <div class="w-full flex justify-start gap-x-4 items-center">
+    <a class="flex flex-row-reverse shrink-0 items-center" href="/">
+      <h1 class="text-xl font-semibold hidden sm:flex">Astroverse</h1>
+      <Image class="w-16 lg:w-24 dark:brightness-100 brightness-0" src="/logo-baru.png" alt="logo astro verse" width={500} height={500} loading="lazy" />
+    </a>
+    <div class="hidden sm:block">
+      <NavDesktop client:load />
+    </div>
+  </div>
+  <nav class="w-full h-full flex justify-end items-center gap-x-5">
+    <div class="hidden sm:flex flex-row items-center gap-x-4">
+      <Button className="font-semibold rounded-full bg-transparent text-black dark:text-white" size="sm">
+        <a href="/">Login</a>
+      </Button>
+      <Button className="bg-orange-500 text-white font-semibold rounded-full" size="sm">
+        <a href="/">Sign Up</a>
+      </Button>
+    </div>
+    <ThemeToggle />  
+    <SheetMobileNav
+      mainNavItems={[...navMenuConfig.links]}
+      sidebarNavItems={[
+        ...navMenuConfig.pagesNav,
+        ...navMenuConfig.examplesNav,
+      ]}
+      client:load />
+  </nav>
+</header>
+
+<script>
+  const nav = document.getElementById('header')!;
+  const navHeight = nav.getBoundingClientRect().height;
+
+  function updateNavColor(entries: IntersectionObserverEntry[]) {
+    const [entry] = entries;
+    if (!entry.isIntersecting) {
+      nav.classList.add('bg-white', 'dark:bg-nav');
+    } else {
+      nav.classList.remove('bg-white', 'dark:bg-nav');
+    }
+  }
+
+  const headerObserver = new IntersectionObserver(updateNavColor, {
+    root: null,
+    threshold: 0,
+    rootMargin: `-${navHeight}px`,
+  });
+  
+  headerObserver.observe(nav);
+
+</script>
